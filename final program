@@ -1,0 +1,39 @@
+import random
+
+def play_game():
+    options = {
+        "clothing brands": ["nike", "chanel", "gucci", "hollister"],
+        "animals": ["cat", "dog", "lion", "tiger"],
+        "car brands": ["bmw", "audi", "honda", "ford"]
+    }
+
+    secret_category = random.choice(list(options.keys()))
+    secret_word = random.choice(options[secret_category])
+    attempts = 0
+    max_attempts = 10
+
+    print("Welcome to the Guessing Game!")
+    print("I'm thinking of a word in a specific category.")
+    print("The categories are: clothing brands, animals, and car brands.")
+    print(f"You have {max_attempts} attempts to guess the word in the chosen category.")
+
+    while attempts < max_attempts:
+        guess = input("Take a guess: ")
+        attempts += 1
+
+        if guess.lower() != secret_word.lower():
+            print("Wrong guess! Try again.")
+        else:
+            print(f"Congratulations! You guessed the word '{secret_word}' in the category '{secret_category}'.")
+            break
+
+    if guess.lower() != secret_word.lower():
+        print(f"Sorry, you ran out of attempts! The word was '{secret_word}' in the category '{secret_category}'.")
+
+    play_again = input("Do you want to play again? (yes/no): ")
+    if play_again.lower() == "yes":
+        play_game()
+    else:
+        print("Thanks for playing!")
+
+play_game()
